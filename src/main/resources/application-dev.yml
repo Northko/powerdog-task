@@ -1,0 +1,50 @@
+spring:
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        druid:
+            first:  #数据源1 中间库
+                url: jdbc:mysql://58.16.67.5:3306/shianronghe?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                username: huangyong
+                password: hy123456
+            second:  #数据源2 监管
+                url: jdbc:mysql://58.16.67.5:3306/jg_system?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                username: huangyong
+                password: hy123456
+            three:  #数据源3 经营许可
+                url: jdbc:mysql://58.16.65.149:3306/sp_core_qa?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                username: fsnip
+                password: fsnip.com
+            four:  #数据源3 生产许可
+                url: jdbc:mysql://58.16.65.96:3306/sc_sso_qa?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                username: fsnip
+                password: fsnip.com
+            five: #lims 抽检数据
+                url: jdbc:mysql://58.16.67.32:3306/lims-jg-dw3?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                username: huangyong
+                password: huangyong_10025
+            initial-size: 10
+            max-active: 100
+            min-idle: 10
+            max-wait: 60000
+            pool-prepared-statements: true
+            max-pool-prepared-statement-per-connection-size: 20
+            time-between-eviction-runs-millis: 60000
+            min-evictable-idle-time-millis: 300000
+            #validation-query: SELECT 1 FROM DUAL
+            test-while-idle: true
+            test-on-borrow: false
+            test-on-return: false
+            stat-view-servlet:
+                enabled: true
+                url-pattern: /druid/*
+                #login-username: admin
+                #login-password: admin
+            filter:
+                stat:
+                    log-slow-sql: true
+                    slow-sql-millis: 1000
+                    merge-sql: false
+                wall:
+                    config:
+                        multi-statement-allow: true

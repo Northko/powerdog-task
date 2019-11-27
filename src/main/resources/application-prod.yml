@@ -1,0 +1,50 @@
+spring:
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        druid:
+            first:  #数据源1 中间库
+                url: jdbc:mysql://127.0.0.1:3306/shianronghe?allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+                username: fsnip
+                password: Fsnip_db_2018
+            second:  #数据源2 监管
+                url: jdbc:mysql://rm-go6xu54xbbla9m6iv.mysql.rds.aliyuncs.com\:3306/jg_system?allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+                username: lw
+                password: Fsnip_db_2017
+            three:  #数据源3 经营许可
+                url: jdbc:mysql://rm-go6g747ve860d3qew.mysql.rds.aliyuncs.com:3306/sp_core?allowMultiQueries=true&useUnicode=true&amp;amp;characterEncoding=UTF-8&useSSL=false
+                username: lw
+                password: db_gzlh_kc11730
+            four:  #数据源3 生产许可
+                url: jdbc:mysql://rdsqj7rfuarffeu.mysql.rds.aliyuncs.com:3306/sc_core?allowMultiQueries=true&useUnicode=true&amp;amp;characterEncoding=UTF-8&useSSL=false
+                username: lw
+                password: db_gzlh_kc11730
+            five: #lims 抽检数据
+                url: jdbc:mysql://172.16.150.196:3306/lims-jg-dw3?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+                username: huangyong
+                password: huangyong_10025
+            initial-size: 10
+            max-active: 100
+            min-idle: 10
+            max-wait: 60000
+            pool-prepared-statements: true
+            max-pool-prepared-statement-per-connection-size: 20
+            time-between-eviction-runs-millis: 60000
+            min-evictable-idle-time-millis: 300000
+            validation-query: SELECT 1 FROM DUAL
+            test-while-idle: true
+            test-on-borrow: false
+            test-on-return: false
+            stat-view-servlet:
+                enabled: true
+                url-pattern: /druid/*
+                #login-username: admin
+                #login-password: admin
+            filter:
+                stat:
+                    log-slow-sql: true
+                    slow-sql-millis: 1000
+                    merge-sql: true
+                wall:
+                    config:
+                        multi-statement-allow: true
